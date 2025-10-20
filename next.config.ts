@@ -1,7 +1,14 @@
-import type { NextConfig } from "next";
+// next.config.ts
 
-const nextConfig: NextConfig = {
-  /* config options here */
+// @ts-expect-error - No type definitions available for 'anchor-pki'
+import autoCert from "anchor-pki/auto-cert/integrations/next";
+
+const withAutoCert = autoCert({
+  enabledEnv: "development", // Enable AutoCert in development environment
+});
+
+const nextConfig = {
+  // Add any custom Next.js config options here
 };
 
-export default nextConfig;
+export default withAutoCert(nextConfig);
